@@ -1,0 +1,384 @@
+/* ====================================== DEFINITION OF VARIABLES ====================================== */
+:root {
+    --white-color: #FFF;
+    --black-color: #000;
+    --primary-color: #EEE;
+    --second-color: #F0F9FF;
+    --text-color: #333;
+    --border-color: #E5E6E7;
+    --invalid-color: #B92326;
+    --valid-color: #8BC34A;
+    --label-color: #A5A6A7;
+    --placeholder-color: #a5a6a7d2;
+    --button-color: #999;
+    --button-bg: #06B6D4;
+}
+
+
+/* ====================================== GENERALS STYLES (AND ANOTHER SECTIONS) ====================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Helvetica, Arial, sans-serif;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    display: grid;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--primary-color);
+}
+
+p {
+    position: relative;
+}
+
+input:required+span::after {
+    content: "*";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--black-color);
+}
+
+.container__button:active,
+.dialog__close:active,
+.form__submit:active {
+    transform: scale(0.9);
+    transition: 0.5s;
+}
+
+
+
+
+/* ====================================== CONTAINER ====================================== */
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    width: 120rem;
+    padding: 1rem;
+}
+
+.container__book {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 220px;
+    gap: 1.5rem;
+    background-position: center;
+    background-size: cover;
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #D11D24;
+    overflow: hidden;
+}
+
+.book__remove {
+    position: absolute;
+    top: -0.5rem;
+    right: 0;
+    width: min-content;
+    font-size: 2rem;
+    padding: 0.3rem 0.7rem;
+    line-height: 2rem;
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    transition: background-color 0.1s;
+}
+
+.book__remove:hover {
+    background-color: var(--white-color);
+}
+
+.book__main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.book__title {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0;
+    padding-left: 1rem;
+    color: var(--white-color);
+}
+
+.book__author {
+    font-size: 1.5rem;
+    padding-left: 1rem;
+    color: var(--text-color);
+}
+
+.book__footer {
+    align-self: flex-end;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1rem;
+    color: var(--white-color);
+}
+
+.book__read {
+    appearance: none;
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #808080;
+    background-color: var(--text-color);
+    color: var(--white-color);
+    vertical-align: -2px;
+}
+
+.book__read::before {
+    content: "✔";
+    position: absolute;
+    font-size: 1.3rem;
+    top: -0.8rem;
+    right: -0.3rem;
+    transform: rotate(12deg);
+    visibility: hidden;
+    
+}
+
+.book__read:checked::before {
+    visibility: visible;
+}
+
+.container__button {
+    align-self: center;
+    position: relative;
+    width: 10rem;
+    height: 3rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    background-color: rgb(45 45 45 / 1);
+    border: none;
+    border-radius: 50px;
+    color: var(--button-color);
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.5;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.container__button:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 15px var(--primary-color), 0 0 40px var(--primary-color);
+}
+
+.container__button span {
+    position: relative;
+    z-index: 1;
+}
+
+.container__button::before {
+    content: "";
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    width: 20rem;
+    height: 20rem;
+    background: radial-gradient(var(--white-color), transparent, transparent);
+    opacity: 0;
+    transition: 0.5s, top 0s, left 0s;
+}
+
+.container__button:hover::before {
+    opacity: 1;
+}
+
+.container__button::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background-color: rgb(45 45 45 / 0.8);
+    border-radius: 48px;
+}
+
+
+/* ====================================== DIALOG ====================================== */
+.container__dialog::backdrop {
+    background-color: rgb(0 0 0 / 0.8);
+}
+
+.container__dialog {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    max-width: 95%;
+    width: 50rem;
+    border: none;
+    transform: translate(-50%, -50%);
+}
+
+.dialog__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    padding: 3rem 2rem;
+    background-color: var(--white-color);
+}
+
+.dialog__close {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.3rem;
+    background-color: rgb(45 45 45 / 1);
+    color: var(--button-color);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    z-index: 1;
+}
+
+.form__input {
+    position: relative;
+    width: 100%;
+    height: 3.2rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    line-height: 1.5;
+    outline: none;
+}
+
+.form__input:focus {
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
+}
+
+.form__label {
+    position: absolute;
+    top: 1.9rem;
+    left: 0.6rem;
+    width: 100%;
+    color: var(--label-color);
+    opacity: 0;
+    transition: all 300ms linear;
+    pointer-events: none;
+}
+
+.form__input:focus~label,
+.form__input:not(:placeholder-shown)~label {
+    top: -1rem;
+    left: 0;
+    opacity: 1;
+    font-size: 1.3rem;
+    z-index: 1;
+}
+
+.form__input::-webkit-input-placeholder {
+    font-size: 1.2rem;
+    color: var(--placeholder-color);
+    text-transform: uppercase;
+}
+
+.form__input::-moz-input-placeholder {
+    font-size: 1.2rem;
+    color: var(--placeholder-color);
+    text-transform: uppercase;
+}
+
+.form__input::placeholder {
+    font-size: 1.2rem;
+    color: var(--placeholder-color);
+    text-transform: uppercase;
+}
+
+.form__input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.form__input:focus::-moz-input-placeholder {
+    color: transparent;
+}
+
+.form__input:focus::placeholder {
+    color: transparent;
+}
+
+.form__input:invalid {
+    border: 1px solid var(--invalid-color);
+}
+
+.form__input:focus:invalid {
+    border: 1px solid var(--invalid-color);
+    box-shadow: 0 0 2px 2px rgb(185 35 38 / 0.25);
+    ;
+}
+
+.form__input:invalid+span::after {
+    color: var(--invalid-color);
+}
+
+.form__input:invalid~label {
+    color: var(--invalid-color);
+}
+
+.form__input:focus:invalid+span::after {
+    color: var(--invalid-color);
+}
+
+.form__input:valid {
+    border: 1px solid var(--valid-color);
+}
+
+.form__input:focus:valid {
+    border: 1px solid var(--valid-color);
+    box-shadow: 0 0 2px 2px rgba(139, 195, 74, 0.25);
+}
+
+.form__input:valid+span::after {
+    color: var(--valid-color);
+}
+
+.form__input:valid~label {
+    color: var(--valid-color);
+}
+
+.form__input:placeholder-shown {
+    border: 1px solid var(--border-color);
+}
+
+.form__input:placeholder-shown+span::after {
+    color: var(--black-color);
+}
+
+.form__submit {
+    width: 30%;
+    margin: auto;
+    padding: 0.5rem 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background-color: var(--button-bg);
+    border: none;
+    color: var(--white-color);
+    cursor: pointer;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}

@@ -15,83 +15,33 @@
 <body>
     <main class="container">
         <div class="container__book">
-            <div class="book">
-                <h2>The hobbit</h2>
-                <div>
-                    <span>author</span>
-                    <span>read</span>
-                    <span>pages</span>
-                </div>
-            </div>
-            <div class="book">
-                <h2>The hobbit</h2>
-                <div>
-                    <span>author</span>
-                    <span>read</span>
-                    <span>pages</span>
-                </div>
-            </div>
-            <div class="book">
-                <h2>The hobbit</h2>
-                <div>
-                    <span>author</span>
-                    <span>read</span>
-                    <span>pages</span>
-                </div>
-            </div>
-            <div class="book">
-                <h2>The hobbit</h2>
-                <div>
-                    <span>author</span>
-                    <span>read</span>
-                    <span>pages</span>
-                </div>
-            </div>
-            <div class="book">
-                <h2>The hobbit</h2>
-                <div>
-                    <span>author</span>
-                    <span>read</span>
-                    <span>pages</span>
-                </div>
-            </div>
-            <div class="book">
-                <h2>The hobbit</h2>
-                <div>
-                    <span>author</span>
-                    <span>read</span>
-                    <span>pages</span>
-                </div>
-            </div>
-            <div class="book">
-                <h2>The hobbit</h2>
-                <div>
-                    <span>author</span>
-                    <span>read</span>
-                    <span>pages</span>
-                </div>
-            </div>
+            
         </div>
-        <button type="button" class="container__button">New Book</button>
+
+        <button type="button" class="container__button"><span>New Book</span></button>
 
         <dialog class="container__dialog">
+            <button type="button" title="Close" class="dialog__close">X</button>
             <form action="" method="dialog" class="dialog__form">
-                <button type="button" title="Close" class="dialog__close">X</button>
                 <p>
-                    <input type="text" class="dialog__input" name="book__title" id="title" placeholder="Title" maxlength="100" pattern="^[^0-9]+$" required>
-                    <span class="dialo__span" title="Required"></span>
-                    <label for="title" class="dialog__label">Title</label>
+                    <input type="text" class="form__input" name="book__title" id="title" placeholder="Title"
+                        maxlength="100" required>
+                    <span class="form__span" title="Required"></span>
+                    <label for="title" class="form__label">Title</label>
                 </p>
                 <p>
-                    <input type="text" class="dialog__input" name="book__author" id="author" placeholder="Author" maxlength="100" pattern="^[^0-9]+$" required>
-                    <span class="dialo__span" title="Required"></span>
-                    <label for="author" class="dialog__label">Author</label>
+                    <input type="text" class="form__input" name="book__author" id="author" placeholder="Author"
+                        maxlength="100" required>
+                    <span class="form__span" title="Required"></span>
+                    <label for="author" class="form__label">Author</label>
                 </p>
                 <p>
-                    <input type="number" class="dialog__input" name="book__pages" id="pages" placeholder="Pages" min="1" required>
-                    <span class="dialo__span" title="Required"></span>
-                    <label for="pages" class="dialog__label">Pages</label>
+                    <input type="number" class="form__input" name="book__pages" id="pages" placeholder="Pages" min="1"
+                        required>
+                    <span class="form__span" title="Required"></span>
+                    <label for="pages" class="form__label">Pages</label>
                 </p>
+                <button type="submit" class="form__submit">Create</button>
             </form>
         </dialog>
     </main>
