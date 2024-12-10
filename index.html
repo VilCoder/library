@@ -13,20 +13,39 @@
 </head>
 
 <body>
-    <main class="container">
+    <header class="header-container">
+        <a href="#" class="container__logo">
+            <h1 class="logo__title">Library</h1>
+            <svg class="logo__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                    d="M19.5,9V1.5H16.5V9H13.5V1.5H10.5V9H7.5V1.5H4.65V9H3V10.5H21V9H19.5M19.5,13.5H16.5V21H13.5V13.5H10.5V21H7.5V13.5H4.65V21H3V22.5H21V21H19.5V13.5Z" />
+            </svg>
+        </a>
+        <nav class="container__navbar">
+            <ul class="navbar__ul">
+                <li class="navbar__li"><a href="#" class="navbar__link">Home</a></li>
+                <li class="navbar__li"><a href="#" class="navbar__link">Profile</a></li>
+                <li class="navbar__li"><a href="#" class="navbar__link">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <button type="button" class="container__button"><span>New Book</span></button>
+
         <div class="container__book">
             
         </div>
 
-        <button type="button" class="container__button"><span>New Book</span></button>
-
         <dialog class="container__dialog">
             <button type="button" title="Close" class="dialog__close">X</button>
-            <form action="" method="dialog" class="dialog__form">
+            <form action="" method="dialog" class="dialog__form" autocomplete="off">
+                <h2 class="form__title">Add new book</h2>
                 <p>
                     <input type="text" class="form__input" name="book__title" id="title" placeholder="Title"
                         maxlength="100" required>
                     <span class="form__span" title="Required"></span>
+                    <span class="form__error" id="error__message"></span>
                     <label for="title" class="form__label">Title</label>
                 </p>
                 <p>
@@ -36,12 +55,12 @@
                     <label for="author" class="form__label">Author</label>
                 </p>
                 <p>
-                    <input type="number" class="form__input" name="book__pages" id="pages" placeholder="Pages" min="1"
-                        required>
+                    <input type="number" class="form__input" name="book__pages" id="pages" placeholder="0" min="1"
+                       required>
                     <span class="form__span" title="Required"></span>
                     <label for="pages" class="form__label">Pages</label>
                 </p>
-                <button type="submit" class="form__submit">Create</button>
+                <button type="submit" class="form__submit">Add Book</button>
             </form>
         </dialog>
     </main>

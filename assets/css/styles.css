@@ -25,12 +25,13 @@
 
 html {
     font-size: 10px;
+    color: li;
 }
 
 body {
-    display: grid;
-    justify-content: center;
-    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;      
     min-height: 100vh;
     background-color: var(--primary-color);
 }
@@ -57,14 +58,79 @@ input:required+span::after {
 
 
 
+/* ====================================== HEADER ====================================== */
+.header-container {
+    display: flex;
+    width: 100%;
+    padding: 0 4rem;
+    background-color: var(--white-color);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.2);
+}
 
-/* ====================================== CONTAINER ====================================== */
-.container {
+
+
+/* ====================================== LOGO ====================================== */
+.container__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--black-color);
+    text-decoration: none;
+}
+
+.logo__title {
+    font-size: 4rem;
+    font-weight: bold;
+
+}
+
+.logo__icon {
+    max-width: 3rem;
+    height: 3rem;
+    transform: translateY(0.3rem);
+}
+
+
+
+/* ====================================== NAVBAR ====================================== */
+.container__navbar {
+    margin-left: auto;   
+    font-size: 2rem;
+}
+
+.navbar__ul {
+    display: flex;
+    height: 100%;
+    list-style: none;
+}
+
+.navbar__li {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.navbar__li:hover {
+    background-color: var(--text-color);
+}
+
+.navbar__link {
+    color: var(--black-color);
+    text-decoration: none;
+}
+
+.navbar__li:hover .navbar__link {
+    color: var(--white-color);
+}
+
+
+
+/* ====================================== MAIN ====================================== */
+.main-container {
     display: flex;
     flex-direction: column;
-    max-width: 100vw;
-    width: 120rem;
-    padding: 1rem;
+    width: 95%;
+    padding: 2rem 0;
 }
 
 .container__book {
@@ -153,7 +219,7 @@ input:required+span::after {
     right: -0.3rem;
     transform: rotate(12deg);
     visibility: hidden;
-    
+
 }
 
 .book__read:checked::before {
@@ -161,15 +227,15 @@ input:required+span::after {
 }
 
 .container__button {
-    align-self: center;
+    align-self: center; 
     position: relative;
     width: 10rem;
     height: 3rem;
     font-size: 1.3rem;
     font-weight: bold;
-    margin-top: 1.5rem;
+    margin: 1.5rem 0;
     background-color: rgb(45 45 45 / 1);
-    border: none;
+    border: none; 
     border-radius: 50px;
     color: var(--button-color);
     cursor: pointer;
@@ -222,21 +288,17 @@ input:required+span::after {
 
 .container__dialog {
     position: relative;
-    top: 50%;
+    top: -100%;
     left: 50%;
     max-width: 95%;
-    width: 50rem;
+    width: 40rem;
     border: none;
     transform: translate(-50%, -50%);
+    transition: top 0.5s ease-in-out;
 }
 
-.dialog__form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    position: relative;
-    padding: 3rem 2rem;
-    background-color: var(--white-color);
+.dialog__opening {
+    top: 50%;
 }
 
 .dialog__close {
@@ -254,16 +316,28 @@ input:required+span::after {
     z-index: 1;
 }
 
+.dialog__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    padding: 3rem 2rem;
+    background-color: var(--white-color);
+}
+
+.form__title {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
 .form__input {
     position: relative;
     width: 100%;
-    height: 3.2rem;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-top: 1rem;
-    padding: 0 0.5rem;
+    padding: 0.5rem;
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    line-height: 1.5;
     outline: none;
 }
 
@@ -370,6 +444,7 @@ input:required+span::after {
 }
 
 .form__submit {
+    position: relative;
     width: 30%;
     margin: auto;
     padding: 0.5rem 0;
@@ -381,4 +456,9 @@ input:required+span::after {
     cursor: pointer;
     letter-spacing: 1px;
     line-height: 1.3;
+}
+
+.form__error {
+    font-size: 1.5rem;
+    color: var(--invalid-color);
 }

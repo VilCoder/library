@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeDialogBtn = document.querySelector(".dialog__close");
     const containerBook = document.querySelector(".container__book");
     const form = document.querySelector(".dialog__form");
+    const formInputs = document.querySelectorAll(".form__input");
+    const errorMessage = document.querySelector("#error__message");
     const library = [];
 
     function Book(title, author, pages) {
@@ -15,14 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function addBookToLibrary(title, author, pages) {
         const book = new Book(title, author, pages);
-        library.push(book);
-        console.log(library);
+
+        if (inLibrary(book.title)) {
+            library.push(book);
+        }
     }
 
     function displayBooks(arr) {
         containerBook.innerHTML = "";
 
-        arr.forEach((element, index) => {
+        arr.forEach((element, index) => { // Loop through the array and create the book inside containerBook
             containerBook.insertAdjacentHTML(
                 "beforeend",
                 `<div class="book book-${index}">
@@ -42,11 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         document.querySelectorAll(".book__read").forEach((checkbox) => {
-            checkbox.addEventListener("change", function() {
+            checkbox.addEventListener("change", function () {
                 const index = this.dataset.index;
                 const book = library[index];
                 book.read = this.checked;
-                console.log( library );
             });
         });
     }
@@ -59,13 +62,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function inLibrary(bookTitle) {
+        return library.every(elem => elem.title !== bookTitle);
+    }
+
     const openDialog = () => {
         dialog.showModal();
+        setTimeout(() => {
+            dialog.classList.add("dialog__opening");
+            formInputs[0].focus();
+        }, 10);
     };
 
     const closeDialog = () => {
-        dialog.close();
-        openDialogBtn.focus();
+        dialog.classList.remove("dialog__opening");
+
+        errorMessage.classList.remove("form__error");
+        errorMessage.textContent = "";
+
+        form.reset();
+
+        setTimeout(() => {
+            dialog.close();
+            openDialogBtn.focus();
+        }, 500);
     };
 
     openDialogBtn.addEventListener("click", openDialog);
@@ -87,13 +107,29 @@ document.addEventListener("DOMContentLoaded", () => {
         const author = document.querySelector("#author").value;
         const pages = document.querySelector("#pages").value;
 
+        if (!inLibrary(title)) {
+            errorMessage.classList.add("form__error");
+            errorMessage.textContent = "This book already exists";
+
+            setTimeout(() => {
+                errorMessage.textContent = "";
+            }, 3000);
+            return;
+        }
+
         addBookToLibrary(title, author, pages);
 
         form.reset();
 
-        displayBooks(library);
+        closeDialog();
 
-        dialog.close();
+        displayBooks(library);
+    });
+
+    dialog.addEventListener("cancel", (event) => {
+        event.preventDefault(); // Prevents automatic closing
+        form.reset();
+        closeDialog();
     });
 
     displayBooks(library);
