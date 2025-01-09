@@ -8,17 +8,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorMessage = document.querySelector("#error__message");
     const library = [];
 
-    function Book(title, author, pages) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.read = false;
+    class Book {
+        constructor(title, author, pages) {
+            this._title = title;
+            this._author = author;
+            this._pages = pages;
+            this._read = false;
+        }
+
+        getTitle() {
+            return this._title;
+        }
+
+        getAuthor() {
+            return this._author;
+        }
+
+        getPages() {
+            return this._pages;
+        }
+
+        
+        getRead() {
+            return this._read;
+        }
+
+        setRead(value) {
+            this._read = value;
+        }
     }
 
     function addBookToLibrary(title, author, pages) {
         const book = new Book(title, author, pages);
 
-        if (inLibrary(book.title)) {
+        if (!inLibrary(book.getTitle())) {
             library.push(book);
         }
     }
@@ -31,12 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 "beforeend",
                 `<div class="book book-${index}">
                     <div class="book__main">
-                        <h2 class="book__title">${element.title}</h2>
-                        <span class="book__author">${element.author}</span>
+                        <h2 class="book__title">${element.getTitle()}</h2>
+                        <span class="book__author">${element.getAuthor()}</span>
                     </div>
                     <div class="book__footer">
-                        <span>Read: <input type="checkbox" class="book__read" data-index="${index}" ${element.read ? "checked" : ""}></span>
-                        <span>Pages: ${element.pages}</span>
+                        <span>Read: <input type="checkbox" class="book__read" data-index="${index}" ${element.getRead() ? "checked" : ""}></span>
+                        <span>Pages: ${element.getPages()}</span>
                     </div>
                 </div>`
             );
@@ -49,7 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
             checkbox.addEventListener("change", function () {
                 const index = this.dataset.index;
                 const book = library[index];
-                book.read = this.checked;
+                book.setRead(this.checked);
+                console.log(library);
             });
         });
     }
@@ -63,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function inLibrary(bookTitle) {
-        return library.every(elem => elem.title !== bookTitle);
+        return library.some(elem => elem.getTitle() === bookTitle);
     }
 
     const openDialog = () => {
@@ -107,13 +131,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const author = document.querySelector("#author").value;
         const pages = document.querySelector("#pages").value;
 
-        if (!inLibrary(title)) {
+        if (inLibrary(title)) {
             errorMessage.classList.add("form__error");
             errorMessage.textContent = "This book already exists";
 
             setTimeout(() => {
                 errorMessage.textContent = "";
             }, 3000);
+
             return;
         }
 
@@ -134,4 +159,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     displayBooks(library);
 });
-
