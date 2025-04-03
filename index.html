@@ -1,69 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css" />
 
     <script src="./assets/js/main.js" defer></script>
 
     <title>Library</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header-container">
-        <a href="#" class="container__logo">
-            <h1 class="logo__title">Library</h1>
-            <svg class="logo__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                    d="M19.5,9V1.5H16.5V9H13.5V1.5H10.5V9H7.5V1.5H4.65V9H3V10.5H21V9H19.5M19.5,13.5H16.5V21H13.5V13.5H10.5V21H7.5V13.5H4.65V21H3V22.5H21V21H19.5V13.5Z" />
-            </svg>
-        </a>
-        <nav class="container__navbar">
-            <ul class="navbar__ul">
-                <li class="navbar__li"><a href="#" class="navbar__link">Home</a></li>
-                <li class="navbar__li"><a href="#" class="navbar__link">Profile</a></li>
-                <li class="navbar__li"><a href="#" class="navbar__link">Logout</a></li>
-            </ul>
-        </nav>
+      <a href="#" class="container__logo">
+        <h1 class="logo__title">Library</h1>
+        <svg
+          class="logo__icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19.5,9V1.5H16.5V9H13.5V1.5H10.5V9H7.5V1.5H4.65V9H3V10.5H21V9H19.5M19.5,13.5H16.5V21H13.5V13.5H10.5V21H7.5V13.5H4.65V21H3V22.5H21V21H19.5V13.5Z"
+          />
+        </svg>
+      </a>
+      <nav class="container__navbar">
+        <ul class="navbar__ul">
+          <li class="navbar__li"><a href="#" class="navbar__link">Home</a></li>
+          <li class="navbar__li">
+            <a href="#" class="navbar__link">Profile</a>
+          </li>
+          <li class="navbar__li">
+            <a href="#" class="navbar__link">Logout</a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <main class="main-container">
-        <button type="button" class="container__button"><span>New Book</span></button>
+      <button type="button" class="container__button">
+        <span>New Book</span>
+      </button>
 
-        <div class="container__book">
-            
-        </div>
+      <div class="container__book"></div>
 
-        <dialog class="container__dialog">
-            <button type="button" title="Close" class="dialog__close">X</button>
-            <form action="" method="dialog" class="dialog__form" autocomplete="off">
-                <h2 class="form__title">Add new book</h2>
-                <p>
-                    <input type="text" class="form__input" name="book__title" id="title" placeholder="Title"
-                        maxlength="100" required>
-                    <span class="form__span" title="Required"></span>
-                    <span class="form__error" id="error__message"></span>
-                    <label for="title" class="form__label">Title</label>
-                </p>
-                <p>
-                    <input type="text" class="form__input" name="book__author" id="author" placeholder="Author"
-                        maxlength="100" required>
-                    <span class="form__span" title="Required"></span>
-                    <label for="author" class="form__label">Author</label>
-                </p>
-                <p>
-                    <input type="number" class="form__input" name="book__pages" id="pages" placeholder="0" min="1"
-                       required>
-                    <span class="form__span" title="Required"></span>
-                    <label for="pages" class="form__label">Pages</label>
-                </p>
-                <button type="submit" class="form__submit">Add Book</button>
-            </form>
-        </dialog>
+      <dialog class="container__dialog">
+        <button type="button" title="Close" class="dialog__close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <title>close</title>
+            <path
+              d="M19,3H16.3H7.7H5A2,2 0 0,0 3,5V7.7V16.4V19A2,2 0 0,0 5,21H7.7H16.4H19A2,2 0 0,0 21,19V16.3V7.7V5A2,2 0 0,0 19,3M15.6,17L12,13.4L8.4,17L7,15.6L10.6,12L7,8.4L8.4,7L12,10.6L15.6,7L17,8.4L13.4,12L17,15.6L15.6,17Z"
+            />
+          </svg>
+        </button>
+        <form action="" method="dialog" class="dialog__form">
+          <h2 class="form__title">Add new book</h2>
+          <p>
+            <input
+              type="text"
+              class="form__input"
+              name="book__title"
+              id="title"
+              placeholder="Title"
+              maxlength="100"
+              required
+            />
+            <span class="form__span" title="Required"></span>
+            <!-- <span class="form__error" id="error__message"></span> -->
+            <span class="form__error aria-live="polite"></span>
+            <label for="title" class="form__label">Title</label>
+          </p>
+          <p>
+            <input
+              type="text"
+              class="form__input"
+              name="book__author"
+              id="author"
+              placeholder="Author"
+              maxlength="30"
+              required
+            />
+            <span class="form__span" title="Required"></span>
+            <span class="form__error" aria-live="polite"></span>
+            <label for="author" class="form__label">Author</label>
+          </p>
+          <p>
+            <input
+              type="number"
+              class="form__input"
+              name="book__pages"
+              id="pages"
+              placeholder="0"
+              min="1"
+              required
+            />
+            <span class="form__span" title="Required"></span>
+            <span class="form__error" aria-live="polite"></span>
+            <label for="pages" class="form__label">Pages</label>
+          </p>
+          <button type="submit" class="form__submit">Add Book</button>
+        </form>
+      </dialog>
     </main>
-</body>
-
+  </body>
 </html>
